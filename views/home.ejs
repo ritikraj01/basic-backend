@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>Welcome to the Home</h1>
+    <% items.forEach(item => { %>
+    <div>
+      <div>
+        <h2><%= item.id %>.</h2>
+        <h2><%= item.username %></h2>
+        <img
+          src="<%= item.image %>"
+          alt="Photo"
+          style="width: 300px; height: auto"
+        />
+        <p><%= item.caption %></p>
+      </div>
+      <span>
+        <a href="/user/<%= item.id %>">
+          <button>Edit</button>
+        </a>
+      </span>
+      <span>
+        <form action="/<%= item.id %>?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="PATCH" />
+          <button>Delete</button>
+        </form>
+      </span>
+    </div>
+    <% }); %>
+    <a href="/new">
+      <button>Add</button>
+    </a>
+  </body>
+</html>
